@@ -22,7 +22,7 @@ class MESH_PT_YAVNEPanel(bpy.types.Panel):
     bl_label = 'Y.A.V.N.E.'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Extended Tools'
+    bl_category = 'Edit'  # Updated for Blender 4.5+
 
     addon_key = __package__.split('.')[0]
 
@@ -197,11 +197,7 @@ class MESH_PT_YAVNEPanel(bpy.types.Panel):
 
             col = box.column(align=True)
 
-            col.prop(addon_props, 'use_auto_smooth')
-
-            row = col.row()
-
-            row.prop(addon_props, 'smooth_angle')
-            row.active = addon_props.use_auto_smooth
+            # In Blender 4.5+ auto smooth is automatic
+            col.prop(addon_props, 'smooth_angle')
 
             box.prop(addon_props, 'use_flat_faces')

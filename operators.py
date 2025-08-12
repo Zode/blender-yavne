@@ -48,10 +48,11 @@ class MESH_OT_YAVNEBase(bpy.types.Operator):
                 edit_object.mode == 'EDIT' and
                 context.space_data.type == 'VIEW_3D')
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Initialize the operator and ensure custom data layers exist.
         """
+        super().__init__(*args, **kwargs)
         self.addon = None
         self.ensure_custom_layers()
 
@@ -852,11 +853,11 @@ class MESH_OT_UpdateVertexNormals(MESH_OT_YAVNEBase):
     )
     bl_options = set()
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Initialize the operator and prepare for multiprocessing if needed.
         """
-        super().__init__()
+        super().__init__(*args, **kwargs)
         self.procs = []
 
     def __del__(self):
@@ -899,11 +900,8 @@ class MESH_OT_UpdateVertexNormals(MESH_OT_YAVNEBase):
         else:
             area_cache = types.FaceAreaCache()
 
-        # Determine the auto smooth angle.
-        if self.addon.preferences.use_auto_smooth:
-            smooth_angle = self.addon.preferences.smooth_angle
-        else:
-            smooth_angle = math.pi
+        # Use the split angle for normal grouping
+        smooth_angle = self.addon.preferences.smooth_angle
 
         # Determine which vertices are within the chunk of data.
         first = int(chunk / total * len(bm.verts))
@@ -977,7 +975,7 @@ class MESH_OT_UpdateVertexNormals(MESH_OT_YAVNEBase):
         bm.from_mesh(mesh)
 
         # Enable mesh/overlay flags.
-        mesh.use_auto_smooth = True
+        # In Blender 4.5+ auto smooth is automatic with custom normals
         overlay.show_edge_sharp = True
 
         # Prepare the mesh to be processed.
@@ -1011,6 +1009,7 @@ class MESH_OT_UpdateVertexNormals(MESH_OT_YAVNEBase):
             self.worker(bm, split_normals, 0, 1)
 
         # Write split normal data to the mesh, and return to Edit mode.
+        # Blender 4.5 handles custom normals automatically
         mesh.normals_split_custom_set([(n.x, n.y, n.z) for n in split_normals])
         bpy.ops.object.mode_set(mode='EDIT')
 

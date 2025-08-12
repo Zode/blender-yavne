@@ -92,15 +92,11 @@ class YAVNEPrefs(bpy.types.AddonPreferences):
         subtype = 'ANGLE'
     )
 
-    use_auto_smooth: bpy.props.BoolProperty(
-        name = 'Auto Smooth',
-        description = 'Auto smooth based on angle between faces',
-        default = True
-    )
-
+    # In Blender 4.5+ auto smooth is automatic with custom normals
+    # Keeping smooth_angle for split angle control
     smooth_angle: bpy.props.FloatProperty(
-        name = 'Smooth Angle',
-        description = 'Maximum angle between faces to be considered as smooth',
+        name = 'Split Angle',
+        description = 'Maximum angle between faces for normal splitting',
         default = math.radians(89.9),
         min = 0.0,
         max = math.pi,
