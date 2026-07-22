@@ -18,17 +18,14 @@
 import bpy
 
 class MESH_PT_YAVNEPanel(bpy.types.Panel):
-    bl_idname = 'MESH_PT_yavne'
-    bl_label = 'Y.A.V.N.E.'
-    bl_space_type = 'VIEW_3D'
-    bl_region_type = 'UI'
-    bl_category = 'Edit'  # Updated for Blender 4.5+
-
+    bl_idname = "MESH_PT_yavne"
+    bl_label = "Y.A.V.N.E."
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "UI"
+    bl_category = "Edit"
+    bl_context = "mesh_edit"
+    
     addon_key = __package__.split('.')[0]
-
-    @classmethod
-    def poll(cls, context):
-        return context.mode == 'EDIT_MESH'
 
     def draw(self, context):
         addon = context.preferences.addons[self.addon_key]
