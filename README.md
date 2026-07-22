@@ -8,13 +8,14 @@ This Blender addon provides a set of tools for editing vertex normals. As seen i
 
 Select one of the following links depending on the version of Blender that you are using:
 
-* [Blender 4.5+](https://github.com/JordanRO2/yavne/archive/master.zip) - Updated for Blender 4.5 API changes
+* [Blender 5.2+](https://github.com/Zode/blender-yavne/archive/master.zip)
+* [Blender 4.5](https://github.com/JordanRO2/yavne/archive/master.zip)
 * [Blender 2.80-4.2](https://github.com/fedackb/yavne/archive/master.zip)
 * [Blender 2.79](https://github.com/fedackb/yavne/archive/2.79.zip)
 
 ### **User Interface** ###
 
-Y.A.V.N.E. is available within the **3D View > Sidebar > Tools** tab for any mesh object in Edit mode.
+Y.A.V.N.E. is available within the **3D View > Sidebar > Edit** tab for any mesh object in Edit mode.
 
 ![location-2 80](https://user-images.githubusercontent.com/8960984/59981867-226b5200-95c7-11e9-86a3-2809ad02e8a0.png)
 
@@ -82,6 +83,10 @@ It is necessary to recalculate vertex normals after making changes to geometry. 
 **Flat Face Shading** preserves shading discontinuities caused by flat faces.
 
 ### **Version History** ###
+
+3.0.0 (Blender 5.2+ Compatibility Update)
+ * Updated for Blender 5.2 API changes
+ * Removed unnecessary poll method from Y.A.V.N.E. panel (now a built in blender feature with `bl_context`)
 
 2.1.0 (Blender 4.5+ Compatibility Update)
 
