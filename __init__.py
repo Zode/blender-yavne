@@ -20,7 +20,7 @@ import logging
 bl_info = {
     'name' : 'Y.A.V.N.E.',
     'description' : 'Yet another vertex normal editor',
-    'location' : '3D View > Sidebar > Edit > Shading/UVs',
+    'location' : '3D View > Sidebar > Edit > Y.A.V.N.E.',
     'author' : 'Brett Fedack',
     'version' : (3, 0, 0), 
     'blender' : (5, 2, 0), 
