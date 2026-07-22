@@ -84,6 +84,9 @@ It is necessary to recalculate vertex normals after making changes to geometry. 
 
 ### **Version History** ###
 
+3.0.1
+  * Fixed merge erroring
+
 3.0.0 (Blender 5.2+ Compatibility Update)
  * Updated for Blender 5.2 API changes
  * Removed unnecessary poll method from Y.A.V.N.E. panel (now a built in blender feature with `bl_context`)

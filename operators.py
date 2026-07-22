@@ -640,14 +640,22 @@ class MESH_OT_MergeVertexNormals(bpy.types.Operator):
         obj = context.edit_object
         return obj and obj.type == 'MESH' and obj.data.total_vert_sel > 0
 
+    def try_and_get_layer_data(self, location, name):
+        data = location.get(name)
+        if not data:
+            data = location.new(name)
+        
+        return data
+
     def execute(self, context):
         edit_object = context.edit_object
         mesh = edit_object.data
         bm = bmesh.from_edit_mesh(mesh)
-        vertex_normal_weight_layer = bm.verts.layers.int['vertex-normal-weight']
-        loop_normal_x_layer = bm.loops.layers.float['loop-normal-x']
-        loop_normal_y_layer = bm.loops.layers.float['loop-normal-y']
-        loop_normal_z_layer = bm.loops.layers.float['loop-normal-z']
+        vertex_normal_weight_layer = self.try_and_get_layer_data(bm.verts.layers.int, "vertex-normal-weight")
+        loop_normal_x_layer = self.try_and_get_layer_data(bm.loops.layers.float, "loop-normal-x")
+        loop_normal_y_layer = self.try_and_get_layer_data(bm.loops.layers.float, "loop-normal-y")
+        loop_normal_z_layer = self.try_and_get_layer_data(bm.loops.layers.float, "loop-normal-z")
+
         merge_distance_squared = self.distance ** 2
 
         # Organize vertices into discrete space.

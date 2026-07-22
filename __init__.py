@@ -22,7 +22,7 @@ bl_info = {
     'description' : 'Yet another vertex normal editor',
     'location' : '3D View > Sidebar > Edit > Y.A.V.N.E.',
     'author' : 'Brett Fedack',
-    'version' : (3, 0, 0), 
+    'version' : (3, 0, 1), 
     'blender' : (5, 2, 0), 
     'category' : 'Mesh'
 }
